@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export function Login() {
+/*export function Login() {
   const handleOnClick = () => {
     const clientId = "8778b7125fdc47e388ed59b52524346d";
     //const redirectUrl = "http://localhost:3000/";
@@ -21,6 +21,42 @@ export function Login() {
       " "
     )}&response_type=token&show_daialog=true`;
   };
+  return (
+    <Container>
+      <img
+        src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
+        alt="spotify"
+      />
+      <button onClick={handleOnClick}>Connect Spotify</button>
+    </Container>
+  );
+}
+*/
+
+export function Login() {
+  const clientId = "8778b7125fdc47e388ed59b52524346d";
+  const redirectUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://spotify-clone-shashankmahawar.vercel.app/"
+      : "http://localhost:3000/";
+  const apiUrl = "https://accounts.spotify.com/authorize";
+  const scope = [
+    "user-read-email",
+    "user-read-private",
+    "user-read-playback-state",
+    "user-modify-playback-state",
+    "user-read-currently-playing",
+    "user-read-playback-position",
+    "user-top-read",
+    "user-read-recently-played",
+  ];
+
+  const handleOnClick = () => {
+    window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scope.join(
+      "%20"
+    )}&response_type=token&show_dialog=true`;
+  };
+
   return (
     <Container>
       <img
